@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import List from './List';
+import Filters from './Filters';
 import './App.css';
 
 const URL = 'http://hp-api.herokuapp.com/api/characters';
@@ -10,9 +11,11 @@ class App extends Component {
     super(props);
     this.state = {
       characterList: [],
+      input: '',
     }
 
     this.fetchNewList = this.fetchNewList.bind(this);
+    this.handleInput = this.handleInput.bind(this);
   }
 
   componentDidMount() {
@@ -32,12 +35,24 @@ class App extends Component {
       })
   }
 
+  handleInput(event) {
+    this.setState({
+      input: event.target.value,
+    })
+  }
+
   render() {
     console.log('app state', this.state.characterList)
     return (
-      <List
-        characterList = {this.state.characterList}
-      />
+      <main className="Main">
+        <Filters
+          handleInput={this.handleInput}
+          inputState={this.state.input}
+        />
+        <List
+          characterList={this.state.characterList}
+        />
+      </main>
     );
   }
 }
