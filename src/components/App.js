@@ -12,10 +12,13 @@ class App extends Component {
     this.state = {
       characterList: [],
       input: '',
+      filterList: [],
     }
 
     this.fetchNewList = this.fetchNewList.bind(this);
     this.handleInput = this.handleInput.bind(this);
+    this.filterCharactersList = this.filterCharactersList.bind(this);
+    this.renderCharacters = this.renderCharacters.bind(this);
   }
 
   componentDidMount() {
@@ -38,7 +41,64 @@ class App extends Component {
   handleInput(event) {
     this.setState({
       input: event.target.value,
+    }, this.filterCharactersList)
+    console.log('evento', event.target.value)
+  }
+
+  filterCharactersList() {
+    console.log('en filter que es list', this.state.characterList)
+    const characterList = [...this.state.characterList]
+    const input = this.state.input
+    const filteredArray = characterList.filter((character) =>
+      character.name.includes(input)
+    )
+    this.setState({
+      filterList: filteredArray,
     })
+    console.log('filter array', filteredArray)
+  }
+
+  renderCharacters() {
+    if (this.state.characterList.length === 0) {
+      return (
+        <p>Loading</p>
+      )
+    } else if (this.state.input === '') {
+      return (
+        <List
+          characterList={this.state.characterList}
+        />
+      )
+    } else if (this.state.input !== '') {
+      const filterList = [...this.state.filterList]
+      return (
+        <ul>
+          <ul className='Character__list' >
+					{filterList.map(function (character, index) {
+						return (
+							<li
+								key={index}
+								className='Character'>
+								<h1 className='Character__name' >
+									{character.name}
+								</h1>
+								<img
+									src={character.image}
+									alt={character.name}
+									className='Character__img' />
+								<span
+									className='Character__house' >
+									{character.house}
+								</span>
+							</li>
+						)
+					}
+					)}
+				</ul>
+
+        </ul>
+      )
+    }
   }
 
   render() {
@@ -49,9 +109,7 @@ class App extends Component {
           handleInput={this.handleInput}
           inputState={this.state.input}
         />
-        <List
-          characterList={this.state.characterList}
-        />
+        {this.renderCharacters()}
       </main>
     );
   }
