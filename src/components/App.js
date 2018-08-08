@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import List from './List';
+import CharacterList from './CharacterList';
 import Filters from './Filters';
 import './App.css';
 
@@ -32,8 +32,7 @@ class App extends Component {
         console.log('data', data)
         this.setState({
           characterList: data,
-        },
-        )
+        })
         console.log('characterList', this.state)
       })
   }
@@ -59,22 +58,23 @@ class App extends Component {
   }
 
   renderCharacters() {
+    const filterList = [...this.state.filterList]
     if (this.state.characterList.length === 0) {
       return (
         <p>Loading</p>
       )
     } else if (this.state.input === '') {
       return (
-        <List
+        <CharacterList
           characterList={this.state.characterList}
         />
       )
     } else if (this.state.input !== '') {
-      const filterList = [...this.state.filterList]
+      
       return (
-        <ul>
           <ul className='Character__list' >
 					{filterList.map(function (character, index) {
+            console.log('character filtrado', character)
 						return (
 							<li
 								key={index}
@@ -95,8 +95,6 @@ class App extends Component {
 					}
 					)}
 				</ul>
-
-        </ul>
       )
     }
   }
