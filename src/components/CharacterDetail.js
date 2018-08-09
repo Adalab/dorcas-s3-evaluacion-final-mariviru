@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import './CharacterDetail.css';
 
 class CharacterDetail extends Component {
 	render() {
 		const { characterList } = this.props;
-		console.log('que hay en detail', characterList)
+		console.log('que hay en detail', this.props)
 		const detail = characterList[this.props.match.params.id]
 		console.log('detail', detail)
 		return (
@@ -48,3 +49,7 @@ class CharacterDetail extends Component {
 }
 
 export default CharacterDetail;
+
+CharacterDetail.propTypes = {
+  characterList: PropTypes.array.isRequired,
+};

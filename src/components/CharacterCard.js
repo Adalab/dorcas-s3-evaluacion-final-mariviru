@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import './CharacterCard.css';
 
 class CharacterCard extends Component {
@@ -35,3 +36,7 @@ class CharacterCard extends Component {
 }
  
 export default CharacterCard;
+
+CharacterCard.propTypes = {
+  characterList: PropTypes.array.isRequired,
+};

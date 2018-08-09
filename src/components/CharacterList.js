@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import CharacterCard from './CharacterCard';
+import PropTypes from 'prop-types';
 import './CharacterList.css';
+import './CharacterCard.css';
 
 class CharacterList extends Component {
 	render() {
@@ -20,3 +22,7 @@ class CharacterList extends Component {
 }
 
 export default CharacterList;
+
+CharacterList.propTypes = {
+  characterList: PropTypes.array.isRequired,
+};

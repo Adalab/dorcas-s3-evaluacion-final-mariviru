@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import './Filters.css';
 
 class Filters extends Component {
@@ -26,3 +27,8 @@ class Filters extends Component {
 }
 
 export default Filters;
+
+Filters.propTypes = {
+ handleInput: PropTypes.func.isRequired,
+ inputState: PropTypes.string.isRequired,
+};
