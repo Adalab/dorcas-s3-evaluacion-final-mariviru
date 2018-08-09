@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-//import { Route, Switch } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import CharacterList from './CharacterList';
 import Filters from './Filters';
-//import CharacterDetail from './CharacterDetail';
+import CharacterDetail from './CharacterDetail';
 import './App.css';
 
 const URL = 'http://hp-api.herokuapp.com/api/characters';
@@ -35,13 +35,13 @@ class App extends Component {
           characterList: data,
         })
       })
-      console.log('character list', this.state.characterList)
+    console.log('character list', this.state.characterList)
   }
 
   handleInput(event) {
     this.setState({
       input: event.target.value,
-    },this.filterCharactersList)
+    }, this.filterCharactersList)
   }
 
   filterCharactersList() {
@@ -62,11 +62,28 @@ class App extends Component {
           handleInput={this.handleInput}
           inputState={this.state.input}
         />
-        <CharacterList
-          characterList={this.state.characterList}
-          input={this.state.input}
-          filterList={this.state.filterList}
-        />
+        <Switch>
+          <Route
+            exact path='/'
+            render={props =>
+              <CharacterList
+                match={props.match}
+                characterList={this.state.characterList}
+                input={this.state.input}
+                filterList={this.state.filterList}
+              />
+            }
+          />
+          <Route
+            path='/characterdetail/:id'
+            render={props =>
+              <CharacterDetail
+                match={props.match}
+                characterList={this.state.characterList}
+              />
+            }
+          />
+        </Switch>
       </main>
     );
   }

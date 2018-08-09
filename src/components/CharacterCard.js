@@ -5,21 +5,24 @@ import './CharacterCard.css';
 class CharacterCard extends Component {
 	render() {
 		const returnedList = this.props;
-		const id = this.props;
 		console.log('returned en card', this.props)
+		const returnedObject = {
+			...returnedList,
+			id: returnedList.id
+		}
 		return (
-			<Link to={`/characterdetail/${returnedList.id}`}>
+			<Link to={`/characterdetail/${returnedObject.id}`}>
 				<div className='Character'>
 					<h1 className='Character__name' >
-						{returnedList.name}
+						{returnedObject.name}
 					</h1>
 					<img
-						src={returnedList.image}
-						alt={returnedList.name}
+						src={returnedObject.image}
+						alt={returnedObject.name}
 						className='Character__img' />
 					<span
 						className='Character__house' >
-						{returnedList.house}
+						{returnedObject.house}
 					</span>
 				</div>
 			</Link>

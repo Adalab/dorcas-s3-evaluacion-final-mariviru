@@ -20,14 +20,13 @@ class CharacterList extends Component {
 			<div>
 				<ul className='Character__list' >
 					{returnedList.map(function (character, index) {
-						character.id = index
 						return (
 							<li key={index}>
 								<CharacterCard
 									name={character.name}
 									image={character.image}
 									house={character.house}
-									id={character.id}
+									id={index}
 								/>
 							</li>
 						)

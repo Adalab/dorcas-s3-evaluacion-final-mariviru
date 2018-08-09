@@ -6,6 +6,8 @@ class CharacterDetail extends Component {
         console.log('detail props', this.props)
         const characterList = this.props.characterList;
         console.log('character list in detail', characterList)
+        const {name, image, house} = characterList
+        console.log('name list in detail', name)
         return (
             <div className='Character'>
 				<h1 className='Character__name' >
