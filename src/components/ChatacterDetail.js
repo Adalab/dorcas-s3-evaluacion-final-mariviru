@@ -6,7 +6,9 @@ class CharacterDetail extends Component {
     const characterList = this.props.characterList;
     console.log('que hay en detail', characterList)
 				return (
+          
           <p>detalle</p>
+          
 					// <div
 					// 	className='Character'>
 					// 	<h1 className='Character__name' >

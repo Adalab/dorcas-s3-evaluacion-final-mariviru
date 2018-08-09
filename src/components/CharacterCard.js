@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import './CharacterCard.css';
 
 class CharacterCard extends Component {
@@ -9,6 +10,7 @@ class CharacterCard extends Component {
 				character.id = index
 				console.log('character', character)
 				return (
+					<Link to={`/characterdetail/${character.id}`}>
 					<li
 						key={index}
 						className='Character'>Card
@@ -24,6 +26,7 @@ class CharacterCard extends Component {
 							{character.house}
 						</span>
 					</li>
+					</Link>
 				)
 			}
 			)

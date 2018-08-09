@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
-import CharacterList from './CharacterList';
+import { Switch, Route } from 'react-router-dom';
 import Filters from './Filters';
+import Home from './Home';
+import CharacterDetail from './ChatacterDetail';
 import './App.css';
 
 const URL = 'http://hp-api.herokuapp.com/api/characters';
@@ -18,7 +20,6 @@ class App extends Component {
     this.fetchNewList = this.fetchNewList.bind(this);
     this.handleInput = this.handleInput.bind(this);
     this.filterCharactersList = this.filterCharactersList.bind(this);
-    this.renderCharacters = this.renderCharacters.bind(this);
   }
 
   componentDidMount() {
@@ -57,57 +58,36 @@ class App extends Component {
     console.log('filter array', filteredArray)
   }
 
-  renderCharacters() {
-    const filterList = [...this.state.filterList]
-    if (this.state.characterList.length === 0) {
-      return (
-        <p>Loading</p>
-      )
-    } else if (this.state.input === '') {
-      return (
-        <CharacterList
-          characterList={this.state.characterList}
-        />
-      )
-    } else if (this.state.input !== '') {
-      
-      return (
-          <ul className='Character__list' >
-					{filterList.map(function (character, index) {
-            console.log('character filtrado', character)
-						return (
-							<li
-								key={index}
-								className='Character'>
-								<h1 className='Character__name' >
-									{character.name}
-								</h1>
-								<img
-									src={character.image}
-									alt={character.name}
-									className='Character__img' />
-								<span
-									className='Character__house' >
-									{character.house}
-								</span>
-							</li>
-						)
-					}
-					)}
-				</ul>
-      )
-    }
-  }
-
+  
   render() {
-    console.log('app state', this.state.characterList)
     return (
       <main className="Main">
         <Filters
           handleInput={this.handleInput}
           inputState={this.state.input}
         />
-        {this.renderCharacters()}
+        <Switch>
+          <Route
+            exact path='/'
+            render={props =>
+              <Home
+                match={props.match}
+                filterList={this.state.filterList}
+                input={this.state.input}
+                characterList={this.state.characterList}
+              />
+            }
+          />
+          <Route
+            path='/characterdetail/:id'
+            render={props =>
+              <CharacterDetail
+                match={props.match}
+                characterList={this.state.characterList}
+              />
+            }
+          />
+        </Switch>
       </main>
     );
   }
