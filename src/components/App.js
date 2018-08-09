@@ -5,7 +5,7 @@ import Home from './Home';
 import CharacterDetail from './CharacterDetail';
 import './App.css';
 
-const URL = 'http://hp-api.herokuapp.com/api/characters';
+const URL = 'https://hp-api.herokuapp.com/api/characters';
 
 class App extends Component {
 
