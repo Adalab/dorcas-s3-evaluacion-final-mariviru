@@ -19,7 +19,7 @@ class CharacterList extends Component {
 		return (
 			<div>
 				<ul className='Character__list' >
-					{returnedList.map(function(character, index) {
+					{returnedList.map(function (character, index) {
 						character.id = index
 						return (
 							<li key={index}>
@@ -30,15 +30,8 @@ class CharacterList extends Component {
 									id={character.id}
 								/>
 							</li>
-					)
-
-					}
-						
-					)
-					}
-					<CharacterCard
-						characterList={characterList}
-					/>
+						)
+					})}
 				</ul>
 			</div>
 		);

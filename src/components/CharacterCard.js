@@ -8,7 +8,7 @@ class CharacterCard extends Component {
 		const id = this.props;
 		console.log('returned en card', this.props)
 		return (
-			<Link to={`/characterdetail/${id}`}>
+			<Link to={`/characterdetail/${returnedList.id}`}>
 				<div className='Character'>
 					<h1 className='Character__name' >
 						{returnedList.name}
