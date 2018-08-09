@@ -10,7 +10,7 @@ class CharacterCard extends Component {
 				character.id = index
 				console.log('character', character)
 				return (
-					<Link to={`/characterdetail/${character.id}`}>
+					<Link to={`/characterdetail/${character.id}`} key={index}>
 					<li
 						key={index}
 						className='Character'>Card

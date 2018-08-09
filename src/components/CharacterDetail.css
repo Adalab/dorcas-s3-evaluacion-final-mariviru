@@ -1,0 +1,17 @@
+.Character {
+  border: 1px solid black;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 250px;
+  margin: 10px;
+}
+
+.Character__name {
+  font-size: 16px;
+}
+
+.Character__img {
+  width: 100px;
+}
