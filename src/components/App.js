@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Switch, Route } from 'react-router-dom';
 import Filters from './Filters';
 import Home from './Home';
-import CharacterDetail from './ChatacterDetail';
+import CharacterDetail from './CharacterDetail';
 import './App.css';
 
 const URL = 'http://hp-api.herokuapp.com/api/characters';

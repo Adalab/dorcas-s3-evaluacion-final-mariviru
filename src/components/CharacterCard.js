@@ -13,17 +13,17 @@ class CharacterCard extends Component {
 					<Link to={`/characterdetail/${character.id}`} key={index}>
 					<li
 						key={index}
-						className='Character'>Card
-						<h1 className='Character__name' >
-							{character.name}
-						</h1>
+						className='Character'>
 						<img
 							src={character.image}
 							alt={character.name}
 							className='Character__img' />
+						<h1 className='Character__name' >
+							{character.name}
+						</h1>
 						<span
 							className='Character__house' >
-							{character.house}
+							{character.house || 'Casa Desconocida'}
 						</span>
 					</li>
 					</Link>

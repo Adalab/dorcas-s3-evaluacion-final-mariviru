@@ -8,8 +8,18 @@ class Filters extends Component {
     const { inputState } = this.props;
     return (
       <form className="Form">
-        <label htmlFor="buscador">Busca un personaje</label>
-        <input onChange={handleInput} id="buscador" type="text" value={inputState} />
+        <label 
+          htmlFor="buscador" 
+          className='Form__title' >
+            Harry Potter Characters
+          </label>
+        <input 
+          onChange={handleInput} 
+          id="buscador" 
+          type="text" 
+          value={inputState}
+          className='Form__input'
+        />
       </form>
     );
   }
