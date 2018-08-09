@@ -33,7 +33,7 @@ class CharacterDetail extends Component {
 								Patronus: {detail.patronus}
 							</p>
 							<p className='Character__detail-alive' >
-								Estado: {detail.alive}
+								Estado: {(detail.alive === true) ? 'VIVO' : 'MUERTO'}
 							</p>
 						</div>
 					</div>
