@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './CharacterDetail.css';
 
 class CharacterDetail extends Component {
+    
     render() {
         console.log('detail props', this.props)
         const characterList = this.props.characterList;
