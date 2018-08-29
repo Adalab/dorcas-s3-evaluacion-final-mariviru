@@ -5,10 +5,13 @@ import './CharacterDetail.css';
 
 class CharacterDetail extends Component {
 	render() {
-		const { characterList } = this.props;
-		console.log('que hay en detail', this.props)
-		const detail = characterList[this.props.match.params.id]
-		console.log('detail', detail)
+		const {
+			characterWithId,
+			match,
+		} = this.props;
+
+		const detail = characterWithId[match.params.id];
+
 		return (
 			<section className='Character__detail-container' >
 				<Link to='/' className='Character__detail-link'>
@@ -16,9 +19,9 @@ class CharacterDetail extends Component {
 				</Link>
 				<div className='Character__detail-main' >
 					<div className='Character__detail-image'>
-					<img
-						src={detail.image} 
-						alt={detail.name} />
+						<img
+							src={detail.image}
+							alt={detail.name} />
 					</div>
 					<div
 						className='Character__detail'>
@@ -51,5 +54,6 @@ class CharacterDetail extends Component {
 export default CharacterDetail;
 
 CharacterDetail.propTypes = {
-  characterList: PropTypes.array.isRequired,
+	characterWithId: PropTypes.array.isRequired,
+	match: PropTypes.object.isRequired,
 };
