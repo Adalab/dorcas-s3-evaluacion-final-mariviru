@@ -1,8 +1,12 @@
 .Character__detail-container {
-  margin: auto;
+  height: 100%;
   display: flex;
   flex-direction: column;
-  align-content: center;
+  align-items: center;
+  justify-content: center;
+  background: #ed9255;
+  padding-top: 30px;
+  padding-bottom: 30px;
 }
 
 .Character__detail-link{
@@ -18,34 +22,68 @@
 }
 
 .Character__detail-main {
-  height: 100vh;
-  background: #ed9255;
+  margin: auto;
+  width: 80%;
   display: flex;
-  justify-content: space-around;
+  flex-direction: column;
 }
 
 .Character__detail-image {
-  width: 50%;
-  height: 100%;
+  max-height: 350px;
+  width: auto;
+  object-fit: cover;
   justify-self: center;
 }
 
 .Character__detail {
-  width: 50%;
   display: flex;
   flex-direction: column;
-  margin-top: 50px;
-}
-
-.Character__detail-name {
-  align-self: center;
+  align-items: center;
+  margin-top: 20px;
 }
 
 .Character__detail-data {
-  height: 150px;
-  margin-top: 50px;
-  padding-left: 30px;
+  height: 300px;
+  margin-top: 10px;
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: space-evenly;
+}
+
+.Character__detail-house {
+  width: 75px;
+  height: 100px;
+  object-fit: cover;
+}
+
+.Character__detail-alive {
+  width: 50px;
+  height: 50px;
+}
+
+@media all and (min-width: 768px) {
+  .Character__detail-main {
+    margin: auto;
+    width: 80%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    margin-bottom: 80px;
+  }
+
+  .Character__detail {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .Character__detail-name {
+    align-self: center;
+  }
+
+  .Character__detail-data {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+  }
 }
