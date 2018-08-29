@@ -24,13 +24,45 @@ class Filters extends Component {
           id="buscador"
           type="text"
           value={inputState}
+          placeholder='Busca a tu personaje favorito'
           className='Form__input'
         />
-        <select onChange={handleSelect} value={selectValue} id="">
-          <option value="Gryffindor">Gryffindor</option>
-          <option value="Hufflepuff">Hufflepuff</option>
-          <option value="Slytherin">Slytherin</option>
-          <option value="Ravenclaw">Ravenclaw</option>
+        <select
+          onChange={handleSelect}
+          value={selectValue}
+          id=""
+          className='Form__select'
+        >
+          <option
+            value="Seleciona una casa"
+            className='Form__select-option'
+          >
+            Seleciona una casa
+          </option>
+          <option
+            value="Gryffindor"
+            className='Form__select-option'
+          >
+            Gryffindor
+          </option>
+          <option
+            value="Hufflepuff"
+            className='Form__select-option'
+          >
+            Hufflepuff
+          </option>
+          <option
+            value="Slytherin"
+            className='Form__select-option'
+          >
+            Slytherin
+          </option>
+          <option
+            value="Ravenclaw"
+            className='Form__select-option'
+          >
+            Ravenclaw
+           </option>
         </select>
       </form>
     );
