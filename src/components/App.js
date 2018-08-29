@@ -13,13 +13,17 @@ class App extends Component {
     super(props);
     this.state = {
       characterList: [],
+      characterWithId: [],
       input: '',
       filterList: [],
+      select: '',
     }
 
     this.fetchNewList = this.fetchNewList.bind(this);
     this.handleInput = this.handleInput.bind(this);
     this.filterCharactersList = this.filterCharactersList.bind(this);
+    this.filterHouse = this.filterHouse.bind(this);
+    this.handleSelect = this.handleSelect.bind(this);
   }
 
   componentDidMount() {
@@ -33,62 +37,92 @@ class App extends Component {
         console.log('data', data)
         this.setState({
           characterList: data,
-        })
-        console.log('characterList', this.state)
+        }, this.addId)
       })
+  }
+
+  addId() {
+    const actualicedList = [...this.state.characterList];
+    let characterListId = [];
+    for (let i = 0; i < actualicedList.length; i++) {
+      characterListId[i] = {
+        ...actualicedList[i],
+        id: i
+      }
+    }
+    this.setState({
+      characterWithId: characterListId
+    })
   }
 
   handleInput(event) {
     this.setState({
       input: event.target.value,
     }, this.filterCharactersList)
-    console.log('evento', event.target.value)
   }
 
   filterCharactersList() {
-    console.log('en filter que es list', this.state.characterList)
-    const characterList = [...this.state.characterList]
-    const input = this.state.input
-    const filteredArray = characterList.filter((character) =>
-      character.name.includes(input)
+    console.log('en filter que es list', this.state.characterWithId)
+    const actualicedList = [...this.state.characterWithId];
+    const input = this.state.input;
+    const filteredByName = actualicedList.filter((character) =>
+      character.name.toLowerCase().includes(input.toLowerCase())
     )
     this.setState({
-      filterList: filteredArray,
+      filterList: filteredByName,
     })
-    console.log('filter array', filteredArray)
   }
 
-  
+  handleSelect(event) {
+    this.setState({
+      select: event.target.value,
+    }, this.filterHouse)
+  }
+
+  filterHouse() {
+    const actualicedList = [...this.state.characterWithId];
+    const select = this.state.select;
+    const filterByHouse = actualicedList.filter((character) =>
+      character.house === select
+    )
+    this.setState({
+      filterList: filterByHouse,
+    })
+  }
+
   render() {
     return (
-      <main className="Main">
-        <Filters
-          handleInput={this.handleInput}
-          inputState={this.state.input}
-        />
-        <Switch>
-          <Route
-            exact path='/'
-            render={props =>
+      <Switch>
+        <Route
+          exact path='/'
+          render={props =>
+            <main className="Main">
+              <Filters
+                handleInput={this.handleInput}
+                handleSelect={this.handleSelect}
+                inputState={this.state.input}
+                selectValue={this.state.select}
+              />
               <Home
                 match={props.match}
                 filterList={this.state.filterList}
                 input={this.state.input}
-                characterList={this.state.characterList}
+                characterWithId={this.state.characterWithId}
+                select={this.state.select}
               />
-            }
-          />
-          <Route
-            path='/characterdetail/:id'
-            render={props =>
-              <CharacterDetail
-                match={props.match}
-                characterList={this.state.characterList}
-              />
-            }
-          />
-        </Switch>
-      </main>
+            </main>
+          }
+        />
+        <Route
+          path='/characterdetail/:id'
+          render={props =>
+            <CharacterDetail
+              match={props.match}
+              characterWithId={this.state.characterWithId}
+            />
+          }
+        />
+      </Switch>
     );
   }
 }

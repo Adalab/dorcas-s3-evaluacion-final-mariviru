@@ -1,22 +1,41 @@
 import React, { Component } from 'react';
 import CharacterCard from './CharacterCard';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import './CharacterList.css';
 import './CharacterCard.css';
 
 class CharacterList extends Component {
 	render() {
-		console.log('list props', this.props)
-		const characterList = this.props.characterList
-		console.log('character list in list', characterList)
+		const {
+			characterWithId,
+			filterList,
+		} = this.props;
+
+		let listToShow;
+
+		if (filterList.length === 0) {
+			listToShow = characterWithId
+		} else {
+			listToShow = filterList
+		}
+
 		return (
-			<div>
-				<ul className='Character__list' >
-					<CharacterCard
-						characterList={characterList}
-					/>
-				</ul>
-			</div>
+			<ul className='Character__list' >
+				{listToShow.map(function (character) {
+					return (
+						<li key={character.id}>
+							<Link to={`/characterdetail/${character.id}`}>
+								<CharacterCard
+									image={character.image}
+									name={character.name}
+									house={character.house}
+								/>
+							</Link>
+						</li>
+					)
+				})}
+			</ul>
 		);
 	}
 }
@@ -24,5 +43,6 @@ class CharacterList extends Component {
 export default CharacterList;
 
 CharacterList.propTypes = {
-  characterList: PropTypes.array.isRequired,
+	characterWithId: PropTypes.array.isRequired,
+	filterList: PropTypes.array.isRequired,
 };
